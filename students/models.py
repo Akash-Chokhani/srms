@@ -8,6 +8,11 @@ class Students(models.Model):
         return self.name
     
 
+class Branch(models.Model):
+    branch_name = models.CharField(max_length=256)
+
+    
+
 class Subjects(models.Model):
     sub_code = models.CharField(max_length=10)
     sub_name = models.CharField(max_length=20)
@@ -16,3 +21,8 @@ class Marks(models.Model):
     rollno = models.ForeignKey('Students', on_delete=models.CASCADE)
     sub_code = models.ForeignKey('Subjects', on_delete=models.CASCADE)
     marks = models.IntegerField()
+
+
+class Instructor(models.Model):
+    name = models.CharField(max_length=256)
+    subject_taught = models.ForeignKey(Subjects, on_delete=models.CASCADE)
