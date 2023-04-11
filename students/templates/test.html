@@ -1,0 +1,136 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    Bootstrap Example
+{% endblock %}
+
+{% block content %}
+    <div class='container-fluid rounded p-3 my-3 bg-primary text-white text-center'>
+        <h1>My First <span class='badge bg-success'>Bootstrap</span> Page</h1>
+        <p>This is some text<p>
+        
+        <div class='row'>
+            <div class='col-4 rounded-pill bg-white text-black'>col1</div>
+            <div class='col-8 rounded-pill bg-black'>col2</div>
+        </div>
+        <div class='row'>
+            <div class='col'>col3</div>
+            <div class='col'>col4</div>
+            <div class='col'>col5</div>
+        </div>
+    </div>
+    
+    <div class='container'>
+        <div class='table-responsive'>
+            <table class='table table-bordered table-hover'>
+                <thead>
+                    <tr class='bg-dark text-white'>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                    </tr>
+                    <tr>
+                        <td>Marry</td>
+                        <td>Moe</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class='container'>
+        <div class='btn-group'>
+            <a href='#'class='btn btn-outline-primary'>Link 1</a>
+            <a href='#'class='btn btn-outline-primary'>Link 2</a>
+        </div>
+        <button class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'>Links</button>
+        <div class='dropdown-menu'>
+            <a href='#'class='dropdown-item'>Link 1</a>
+            <hr class='dropdown-divider'></hr>
+            <a href='#'class='dropdown-item'>Link 2</a>
+            <hr class='dropdown-divider'></hr>
+            <a href='#'class='dropdown-item'>Link 3</a>
+        </div>
+    </div>
+    
+    <div class='container mt-3'>
+        <div class='card'>
+            <div class='card'>
+                <div href='#l1' class='btn bg-secondary text-white text-start' data-bs-toggle='collapse'>Links 1</div>
+            </div>
+            
+            <div id='l1' class='collapse'>
+                <div class='card'>
+                    <a href='#' class='btn text-start'>Link 1</a>
+                </div>
+                <div class='card'>
+                    <a href='#' class='btn text-start'>Link 2</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class='card'>
+            <div class=''><div href='#l2' class='card btn bg-secondary text-white text-start' data-bs-toggle='collapse'>Links 2</div>
+            
+            <div id='l2' class='collapse'>
+                <div><a href='#' class='btn text-start'>Link 1</a></div>
+                <div><a href='#' class='btn text-start'>Link 2</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class='container mt-3'>
+        <ul class='nav nav-tabs'>
+            <li class='nav-item'>
+                <a href='#t1' class='nav-link active' data-bs-toggle='tab'>Tab 1</a>
+            </li>
+            <li class='nav-item'>
+                <a href='#t2' class='nav-link' data-bs-toggle='tab'>Tab 2</a>
+            </li>
+            <li class='nav-item'>
+                <a href='#t3' class='nav-link' data-bs-toggle='tab'>Tab 3</a>
+            </li>
+        </ul>
+        
+        <div class='tab-content'>
+            <div id='t1' class='container tab-pane active'><br>
+                Link 1
+            </div>
+            <div id='t2' class='container tab-pane fade'><br>
+                Link 2
+            </div>
+            <div id='t3' class='container tab-pane fade'><br>
+                Link 3
+            </div>
+        </div>
+    </div>
+    
+    <div class='navbar navbar-expand bg-light'>
+        <div class='container'>
+            <ul class='navbar-nav nav-tabs'>
+                <li class='nav-item'>
+                    <a href='#tn1' class='nav-link'>Tab 1</a>
+                </li>
+                <li class='nav-item'>
+                    <a href='#tn2' class='nav-link'>Tab 2</a>
+                </li>
+                <li class='nav-item'>
+                    <a href='#tn3' class='nav-link'>Tab 3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <nav class='navbar bg-secondary'>
+        <div class='container'>
+            <button class='navbar-toggle'>
+                <span class='navbar-toggler-icon'></span>
+            </button>
+        </div>
+    </nav>
+{% endblock %}

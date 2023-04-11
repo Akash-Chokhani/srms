@@ -1,0 +1,30 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    Marks
+{% endblock %}
+
+{% block content %}
+    <div class='container my-5'>
+        <h1 class='text-center'>Marks</h1>
+        <table class='table table-bordered table-hover'>
+            <thead>
+                <tr class='table-active'>
+                    <td>Roll No</td>
+                    <td>Subject Code</td>
+                    <td>Marks</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in mark %}
+                    <tr>
+                        <td>{{x.rollno}}</td>
+                        <td>{{x.sub_code}}</td>
+                        <td>{{x.marks}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href='/' class='btn btn-primary'>home</a>
+    </div>
+{% endblock %}

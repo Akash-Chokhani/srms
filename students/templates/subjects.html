@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    Subjects
+{% endblock %}
+
+{% block content %}
+    <div class='container my-5'>
+        <h1 class='text-center'>Subjects</h1>
+        <table class='table table-bordered table-hover'>
+            <thead>
+                <tr class='table-active'>
+                    <td>Subject Code</td>
+                    <td>Subject</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in subject %}
+                    <tr>
+                        <td>{{x.sub_code}}</td>
+                        <td>{{x.sub_name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href='/' class='btn btn-primary'>home</a>
+    </div>
+{% endblock %}

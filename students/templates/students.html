@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    Students
+{% endblock %}
+
+{% block content %}
+    <div class='container my-5'>
+        <h1 class='text-center'>Students</h1>
+        <table class='table table-bordered table-hover'>
+            <thead>
+                <tr style='background-color:rgba(255, 99, 71, 0.5)'>
+                    <td>Roll No</td>
+                    <td>Student</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in student %}
+                    <tr>
+                        <td>{{x.rollno}}</td>
+                        <td>{{x.name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href='/' class='btn btn-primary'>home</a>
+    </div>
+{% endblock %}
