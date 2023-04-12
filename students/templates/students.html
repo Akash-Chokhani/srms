@@ -22,9 +22,6 @@
             <li class='nav-item'>
                 <a href='/marks' class='nav-link'>Marks</a>
             </li>
-            <li class='nav-item'>
-                <a href='/result' class='nav-link'>Result</a>
-            </li>
         </ul>
     </div>
 
@@ -47,16 +44,17 @@
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
             </form>
-        <h1 class='text-center'>Students {{student.name}}</h1>
+        <h1 class='text-center'>Students</h1>
         <table class='table table-bordered table-hover'>
             <thead>
                 <tr class='table-secondary'>
                     <td>Roll No</td>
                     <td>Student</td>
+                    <td>Branch</td>
                 </tr>
             </thead>
             <tbody>
-                {% for x in student %}
+                {% for x,br in student %}
                     <tr>
                         <td>{{x.rollno}}</td>
                         <td>
@@ -69,6 +67,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td>{{br.br_name}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

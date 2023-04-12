@@ -6,9 +6,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import Q
 
-def test(request):
-    return render(request, 'test.html')
-
 
 @login_required
 def home(request):
@@ -19,8 +16,12 @@ def home(request):
 
 def students(request):
     student=Students.objects.values()
+    branch=[]
+    for stud in student:
+        br=Branch.objects.filter(id=stud['branch_id']).values().get()
+        branch.append(br)
     context={
-        'student' : student,
+        'student' : zip(student,branch),
     }
     return render(request, 'students.html', context)
 
