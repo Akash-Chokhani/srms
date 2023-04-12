@@ -54,7 +54,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for x,br in student %}
+                {% for x in student %}
                     <tr>
                         <td>{{x.rollno}}</td>
                         <td>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{br.br_name}}</td>
+                        <td>{{x.branch.br_name}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

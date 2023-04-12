@@ -17,13 +17,9 @@ def home(request):
 
 @login_required
 def students(request):
-    student=Students.objects.values()
-    branch=[]
-    for stud in student:
-        br=Branch.objects.filter(id=stud['branch_id']).values().get()
-        branch.append(br)
+    student=Students.objects.all()
     context={
-        'student' : zip(student,branch),
+        'student' : student,
     }
     return render(request, 'students.html', context)
 
