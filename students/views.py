@@ -14,6 +14,8 @@ def home(request):
     """
     return render(request, 'home.html')
 
+
+@login_required
 def students(request):
     student=Students.objects.values()
     branch=[]
@@ -25,6 +27,7 @@ def students(request):
     }
     return render(request, 'students.html', context)
 
+@login_required
 def branch(request):
     branch=Branch.objects.values()
     context={
@@ -32,6 +35,8 @@ def branch(request):
     }
     return render(request, 'branch.html', context)
 
+
+@login_required
 def subjects(request):
     subject=Subjects.objects.values()
     context={
@@ -39,6 +44,8 @@ def subjects(request):
     }
     return render(request, 'subjects.html', context)
 
+
+@login_required
 def branch_subjects(request,bcode):
     br=Branch.objects.filter(br_code=bcode).values().get()
     br_sub=Branch_Subjects.objects.filter(br_code_id=br['id']).values()
@@ -52,6 +59,8 @@ def branch_subjects(request,bcode):
     }
     return render(request, 'branch_subjects.html', context)
 
+
+@login_required
 def marks(request):
     mark=Marks.objects.values()
     student_marks=[]
@@ -66,6 +75,8 @@ def marks(request):
     }
     return render(request, 'marks.html', context)
 
+
+@login_required
 def results(request, roll):
     student=Students.objects.filter(rollno=roll).values().get()
     mark=Marks.objects.filter(rollno_id=student['id']).values()
@@ -90,6 +101,8 @@ def results(request, roll):
     }
     return render(request, 'results.html', context)
 
+
+@login_required
 def add(request):
     student=Students.objects.values()
     context={
@@ -105,7 +118,7 @@ def addrecord(request):
   member.save()
   return HttpResponseRedirect(reverse('students'))
 
-
+@login_required
 def delete(request, roll):
     try:
         del_student = Students.objects.get(rollno=roll)
@@ -120,7 +133,7 @@ def delete(request, roll):
     except:
         return redirect(students)
 
-
+@login_required
 def search(request):
     query = request.POST.get("query")
     filtered_students = Students.objects.filter(Q(name__icontains=query) | Q(rollno__icontains=query))
@@ -129,9 +142,7 @@ def search(request):
     }
     return render(request, 'students.html', context)
 
-def ranks(request):
-    pass
-
+@login_required
 def edit(request, roll):
     if request.method=="GET":
         student = Students.objects.get(rollno=roll)
