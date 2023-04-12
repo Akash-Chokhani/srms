@@ -5,11 +5,31 @@
 {% endblock %}
 
 {% block content %}
+    <div class='container mt-3'>
+        <ul class='nav nav-tabs'>
+            <li class='nav-item'>
+                <a href='/' class='nav-link'>Home</a>
+            </li>
+            <li class=''>
+                <a href='/students' class='nav-link active'>Students</a>
+            </li>
+            <li class='nav-item'>
+                <a href='/subjects' class='nav-link'>Subjects</a>
+            </li>
+            <li class='nav-item'>
+                <a href='/marks' class='nav-link'>Marks</a>
+            </li>
+            <li class='nav-item'>
+                <a href='/result' class='nav-link'>Result</a>
+            </li>
+        </ul>
+    </div>
+
     <div class='container my-5'>
-        <h1 class='text-center'>Students</h1>
+        <h1 class='text-center'>Students {{student.name}}</h1>
         <table class='table table-bordered table-hover'>
             <thead>
-                <tr style='background-color:rgba(255, 99, 71, 0.5)'>
+                <tr class='table-secondary'>
                     <td>Roll No</td>
                     <td>Student</td>
                 </tr>
@@ -23,6 +43,5 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href='/' class='btn btn-primary'>home</a>
     </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'master.html' %}
 
 {% block title %}
-    Subjects
+    Results
 {% endblock %}
 
 {% block content %}
@@ -14,34 +14,40 @@
                 <a href='/students' class='nav-link'>Students</a>
             </li>
             <li class='nav-item'>
-                <a href='/subjects' class='nav-link active'>Subjects</a>
+                <a href='/subjects' class='nav-link'>Subjects</a>
             </li>
             <li class='nav-item'>
                 <a href='/marks' class='nav-link'>Marks</a>
             </li>
             <li class='nav-item'>
-                <a href='/result' class='nav-link'>Result</a>
+                <a href='/result' class='nav-link active'>Result</a>
             </li>
         </ul>
     </div>
 
     <div class='container my-5'>
-        <h1 class='text-center'>Subjects</h1>
+        <h1 class='text-center'>Result</h1>
+        <p>Name: {{student.name}}</p>
+        <p>Roll No: {{student.rollno}}</p>
         <table class='table table-bordered table-hover'>
             <thead>
                 <tr class='table-secondary'>
                     <td>Subject Code</td>
                     <td>Subject</td>
+                    <td>Marks</td>
                 </tr>
             </thead>
             <tbody>
-                {% for x in subject %}
+                {% for sub,m in subject_mark %}
                     <tr>
-                        <td>{{x.sub_code}}</td>
-                        <td>{{x.sub_name}}</td>
+                        <td>{{sub.sub_code}}</td>
+                        <td>{{sub.sub_name}}</td>
+                        <td>{{m.marks}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <p>Total Marks: {{total}}</p>
+        <p>Percentage: {{percent}}</p>
     </div>
 {% endblock %}
