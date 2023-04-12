@@ -10,6 +10,7 @@ urlpatterns = [
     path('marks/', views.marks, name='marks'),
     path('result/<roll>', views.results, name='result'),
     path('test/', views.test, name='test'),
-
+    path('add/', views.add, name='add'),
+    path('add/addrecord/', views.addrecord, name='addrecord'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
 ]

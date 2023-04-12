@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Students,Branch,Subjects,Marks
 from django.contrib.auth.decorators import login_required
+from django.template import loader
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 def test(request):
     return render(request, 'test.html')
@@ -71,3 +74,21 @@ def results(request, roll):
         'percent' : percent,
     }
     return render(request, 'results.html', context)
+
+def add(request):
+    student=Students.objects.values()
+    context={
+        'student' : student,
+    }
+    template = loader.get_template('add.html')
+    return HttpResponse(template.render(context, request))
+
+def addrecord(request):
+  x = request.POST['rolle']
+  y = request.POST['naam']
+  member = Students(rollno=x, name=y)
+  member.save()
+  return HttpResponseRedirect(reverse('students'))
+
+def ranks(request):
+    pass
