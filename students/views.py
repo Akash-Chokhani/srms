@@ -60,20 +60,21 @@ def results(request, roll):
     mark=Marks.objects.filter(rollno_id=student['id']).values()
     subject=Subjects.objects.filter(id=0).values()
     total=0
-    percent=0
+    total_marks=0
     for x in mark:
         subject|=Subjects.objects.filter(id=x['sub_code_id']).values()
         total+=x['marks']
-        percent+=100
+        total_marks+=100
 
-    if percent!=0:
-        percent=(total/percent)*100
+    if total_marks!=0:
+        percent=(total/total_marks)*100
         percent=round(percent,2)
     
     context={
         'student' : student,
         'subject_mark' : zip(subject,mark),
         'total' : total,
+        'total_marks' : total_marks,
         'percent' : percent,
     }
     return render(request, 'results.html', context)
@@ -111,9 +112,7 @@ def delete(request, roll):
 
 def search(request):
     query = request.POST.get("query")
-    print(request.POST)
-    print(query)
-    filtered_students = Students.objects.filter(Q(name__icontains=query))
+    filtered_students = Students.objects.filter(Q(name__icontains=query) | Q(rollno__icontains=query))
     context = {
         'student': filtered_students
     }

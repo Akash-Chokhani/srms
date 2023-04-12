@@ -30,17 +30,6 @@
 
     <div class='container my-5'>
         <h1 class='text-center'>Result</h1>
-        <div style="margin:20px; text-align: center;" class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown link
-            </a>
-          
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
         <hr>
         <p>Name: {{student.name}}</p>
         <p>Roll No: {{student.rollno}}</p>
@@ -62,7 +51,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <p>Total Marks: {{total}}</p>
+        <p>Total Marks: {{total}}/{{total_marks}}</p>
         <p>Percentage: {{percent}}</p>
     </div>
 {% endblock %}
