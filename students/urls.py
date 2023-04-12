@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('students/', views.students, name='students'),
     path('branch/', views.branch, name='branch'),
+    path('branch/<bcode>', views.branch_subjects, name='branch_sub'),
     path('subjects/', views.subjects, name='subjects'),
     path('marks/', views.marks, name='marks'),
     path('result/<roll>', views.results, name='result'),

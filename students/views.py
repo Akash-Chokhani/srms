@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Students,Branch,Subjects,Marks
+from .models import Students,Branch,Subjects,Branch_Subjects,Marks
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
@@ -37,11 +37,21 @@ def subjects(request):
     }
     return render(request, 'subjects.html', context)
 
+def branch_subjects(request,bcode):
+    br=Branch.objects.filter(br_code=bcode).values().get()
+    br_sub=Branch_Subjects.objects.filter(br_code_id=br['id']).values()
+    subs=[]
+    for x in br_sub:
+        sub=Subjects.objects.filter(id=x['sub_code_id']).values().get()
+        subs.append(sub)
+    context={
+        'branch' : br,
+        'branch_sub' : subs,
+    }
+    return render(request, 'branch_subjects.html', context)
+
 def marks(request):
     mark=Marks.objects.values()
-    student=Students.objects.filter(id=0).values()
-    subject=Subjects.objects.filter(id=0).values()
-    
     student_marks=[]
     for x in mark:
         stud=Students.objects.filter(id=x['rollno_id']).values().get()

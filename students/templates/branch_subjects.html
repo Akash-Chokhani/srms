@@ -29,19 +29,19 @@
     </div>
 
     <div class='container my-5'>
-        <h1 class='text-center'>Branch</h1>
+        <h1 class='text-center'>{{branch.br_name}} Subjects</h1>
         <table class='table table-bordered table-hover'>
             <thead>
                 <tr class='table-secondary'>
-                    <td>Branch Code</td>
-                    <td>Branch Name</td>
+                    <td>Subject Code</td>
+                    <td>Subject Name</td>
                 </tr>
             </thead>
             <tbody>
-                {% for data in branch %}
+                {% for data in branch_sub %}
                     <tr>
-                        <td>{{data.br_code}}</td>
-                        <td><a href={% url 'branch_sub' data.br_code %}>{{data.br_name}}</td>
+                        <td>{{data.sub_code}}</td>
+                        <td>{{data.sub_name}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
