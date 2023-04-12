@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Students,Branch,Subjects,Branch_Subjects,Marks
 from django.contrib.auth.decorators import login_required
 from django.template import loader
