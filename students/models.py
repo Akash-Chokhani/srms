@@ -12,6 +12,11 @@ class Branch(models.Model):
     def __str__(self):
         return self.code
 
+class Branch(models.Model):
+    branch_name = models.CharField(max_length=256)
+
+    
+
 class Subjects(models.Model):
     sub_code = models.CharField(max_length=10)
     sub_name = models.CharField(max_length=20)

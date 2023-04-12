@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from .models import Students,Subjects,Marks
+from django.contrib.auth.decorators import login_required
 
 def test(request):
     return render(request, 'test.html')
 
+
+@login_required
 def home(request):
+    """
+        Return the name of all
+    """
     return render(request, 'home.html')
 
 def students(request):
