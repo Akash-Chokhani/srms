@@ -35,6 +35,7 @@
                 <tr class='table-secondary'>
                     <td>Roll No</td>
                     <td>Student</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@
                     <tr>
                         <td>{{x.rollno}}</td>
                         <td><a href={% url 'result' x.rollno %}>{{x.name}}</a></td>
+                        <td style="text-align: center;"><a href="../delete/{{ x.rollno }}">Delete</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

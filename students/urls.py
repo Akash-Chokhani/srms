@@ -12,5 +12,6 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('add/', views.add, name='add'),
     path('add/addrecord/', views.addrecord, name='addrecord'),
+    path('delete/<roll>', views.delete, name='delete'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
 ]

@@ -90,5 +90,10 @@ def addrecord(request):
   member.save()
   return HttpResponseRedirect(reverse('students'))
 
+def delete(request, roll):
+  member = Students.objects.get(rollno=roll)
+  member.delete()
+  return HttpResponseRedirect(reverse('students'))
+
 def ranks(request):
     pass
