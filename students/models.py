@@ -7,15 +7,10 @@ class Students(models.Model):
         return self.rollno
     
 class Branch(models.Model):
-    code = models.CharField(max_length=10)
-    name = models.CharField(max_length=50)
+    br_code = models.CharField(max_length=10)
+    br_name = models.CharField(max_length=50)
     def __str__(self):
-        return self.code
-
-class Branch(models.Model):
-    branch_name = models.CharField(max_length=256)
-
-    
+        return self.br_code
 
 class Subjects(models.Model):
     sub_code = models.CharField(max_length=10)
@@ -24,10 +19,10 @@ class Subjects(models.Model):
         return self.sub_code
 
 class Branch_Subjects(models.Model):
-    branch_code=models.ForeignKey('Branch', on_delete=models.CASCADE)
+    br_code=models.ForeignKey('Branch', on_delete=models.CASCADE)
     sub_code=models.ForeignKey('Subjects', on_delete=models.CASCADE)
     def __str__(self):
-        return f'{self.branch_code} {self.sub_code}'
+        return f'{self.br_code} {self.sub_code}'
 
 class Marks(models.Model):
     rollno = models.ForeignKey('Students', on_delete=models.CASCADE)

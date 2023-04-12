@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Students,Subjects,Marks
+from .models import Students,Branch,Subjects,Marks
 from django.contrib.auth.decorators import login_required
 
 def test(request):
@@ -19,6 +19,13 @@ def students(request):
         'student' : student,
     }
     return render(request, 'students.html', context)
+
+def branch(request):
+    branch=Branch.objects.values()
+    context={
+        'branch' : branch,
+    }
+    return render(request, 'branch.html', context)
 
 def subjects(request):
     subject=Subjects.objects.values()
@@ -44,8 +51,8 @@ def marks(request):
     }
     return render(request, 'marks.html', context)
 
-def results(request):
-    student=Students.objects.filter(rollno='117').values().get()
+def results(request, roll):
+    student=Students.objects.filter(rollno=roll).values().get()
     mark=Marks.objects.filter(rollno_id=student['id']).values()
     subject=Subjects.objects.filter(id=0).values()
     total=0
@@ -64,6 +71,3 @@ def results(request):
         'percent' : percent,
     }
     return render(request, 'results.html', context)
-
-def ranks(request):
-    pass
