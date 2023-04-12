@@ -30,6 +30,7 @@
 
     <div class='container my-5'>
         <h1 class='text-center'>Result</h1>
+        <hr>
         <p>Name: {{student.name}}</p>
         <p>Roll No: {{student.rollno}}</p>
         <table class='table table-bordered table-hover'>
@@ -50,7 +51,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <p>Total Marks: {{total}}</p>
+        <p>Total Marks: {{total}}/{{total_marks}}</p>
         <p>Percentage: {{percent}}</p>
     </div>
 {% endblock %}

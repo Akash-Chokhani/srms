@@ -1,0 +1,60 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    Enter Marks
+{% endblock %}
+
+{% block content %}
+<div class='container mt-3'>
+    <ul class='nav nav-tabs'>
+        <li class='nav-item'>
+            <a href='/' class='nav-link'>Home</a>
+        </li>
+        <li class=''>
+            <a href='/students' class='nav-link active'>Students</a>
+        </li>
+        <li class='nav-item'>
+            <a href='/subjects' class='nav-link'>Subjects</a>
+        </li>
+        <li class='nav-item'>
+            <a href='/marks' class='nav-link'>Marks</a>
+        </li>
+        <li class='nav-item'>
+            <a href='/result' class='nav-link'>Result</a>
+        </li>
+    </ul>
+</div>
+
+<div class='container mt-3'>
+    <h1>Enter Marks for Student</h1>
+
+    <form action="{% url 'edit' student.rollno %}" method="post">
+        {% csrf_token %}
+        <p>
+            Name of Student: {{student.name}}
+        </p>
+        <p>
+            Roll of Student: {{student.rollno}}
+        </p>
+
+        <input type="hidden" name="roll" value="{{student.rollno}}">
+        <label for="subject">Select Subject: </label>
+
+        <select name="subject" id="subject">
+        {% for sub in subjects %}
+            <option value="{{sub.id}}"
+                {% if sub == current_sub %}selected="selected"{% endif %}>
+                {{sub.sub_name|capfirst}}
+            </option>
+        {% endfor %}
+        </select>
+        
+        <br>
+        <br> 
+        <label for="marks">Enter Marks out of 100:</label>
+        <input type="text" name="marks" id="marks">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

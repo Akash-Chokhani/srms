@@ -32,28 +32,30 @@
             <tr class='table-secondary'>
                 <td>Roll No</td>
                 <td>Student</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
             {% for x in student %}
                 <tr>
                     <td>{{x.rollno}}</td>
-                    <td>{{x.name}}</td>
+                    <td><a href={% url 'result' x.rollno %}>{{x.name}}</a></td>
+                    <td style="text-align: center;"><a href="../delete/{{ x.rollno }}">Delete</a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
-<div class='container mt-3'>
-    <h1>Add member</h1>
+<div style="border-radius: 15px;" class='text-bg-secondary p-3 container mt-3'>
+    <h1 style="text-color:black;">Add member</h1>
     <form action="addrecord/" method="post">
         {% csrf_token %}
         Roll No:<br>
-        <input name="rolle">
+        <input name="rolle" required>
         <br><br>
         Student:<br>
-        <input name="naam">
+        <input name="naam" required>
         <br><br>
         <input type="submit" value="Submit">
     </form>

@@ -1,16 +1,18 @@
 from django.db import models
 
-class Students(models.Model):
-    rollno = models.CharField(max_length=10)
-    name = models.CharField(max_length=100)
-    def __str__(self):
-        return self.rollno
-    
 class Branch(models.Model):
     br_code = models.CharField(max_length=10)
     br_name = models.CharField(max_length=50)
     def __str__(self):
         return self.br_code
+
+class Students(models.Model):
+    rollno = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
+    branch = models.ForeignKey(Branch, blank=True, null=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.rollno
+
 
 class Subjects(models.Model):
     sub_code = models.CharField(max_length=10)
