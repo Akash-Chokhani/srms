@@ -50,10 +50,10 @@
     <form action="addrecord/" method="post">
         {% csrf_token %}
         Roll No:<br>
-        <input name="rolle">
+        <input name="rolle" required>
         <br><br>
         Student:<br>
-        <input name="naam">
+        <input name="naam" required>
         <br><br>
         <input type="submit" value="Submit">
     </form>

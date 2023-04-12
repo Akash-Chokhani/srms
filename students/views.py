@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Students,Branch,Subjects,Marks
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 
 def test(request):
     return render(request, 'test.html')
@@ -64,8 +65,10 @@ def results(request, roll):
         subject|=Subjects.objects.filter(id=x['sub_code_id']).values()
         total+=x['marks']
         percent+=100
-    percent=(total/percent)*100
-    percent=round(percent,2)
+
+    if percent!=0:
+        percent=(total/percent)*100
+        percent=round(percent,2)
     
     context={
         'student' : student,
@@ -90,5 +93,55 @@ def addrecord(request):
   member.save()
   return HttpResponseRedirect(reverse('students'))
 
+
+def delete(request, roll):
+    try:
+        del_student = Students.objects.get(rollno=roll)
+        del_student.delete()
+        student=Students.objects.values()
+        message = "Succesfully deleted student record!"
+        context={
+            'student' : student,
+            'message': message
+        }
+        return render(request, 'students.html', context=context)
+    except:
+        return redirect(students)
+
+
+def search(request):
+    query = request.POST.get("query")
+    print(request.POST)
+    print(query)
+    filtered_students = Students.objects.filter(Q(name__icontains=query))
+    context = {
+        'student': filtered_students
+    }
+    return render(request, 'students.html', context)
+
 def ranks(request):
     pass
+
+def edit(request, roll):
+    if request.method=="GET":
+        student = Students.objects.get(rollno=roll)
+        subjects = Subjects.objects.all()
+        context = {
+            'student': student,
+            'subjects': subjects
+        }
+        return render(request, 'edit.html', context)
+    else:
+        roll = request.POST.get('roll')
+        subject = request.POST.get('subject')
+        marks = request.POST.get('marks')
+        student = Students.objects.get(rollno=roll)
+        subject = Subjects.objects.get(id=subject)
+        try:
+            mark = Marks.objects.get(rollno=student, sub_code=subject)
+            mark.marks = marks
+            mark.save()
+        except:
+            mark = Marks(rollno=student, sub_code=subject, marks=marks)
+            mark.save()
+        return redirect(results, roll=roll)

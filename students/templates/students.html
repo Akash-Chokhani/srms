@@ -28,7 +28,25 @@
         </ul>
     </div>
 
+    
+
     <div class='container my-5'>
+        {% if message %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>      
+        {% endif %}
+
+        <form class="d-flex" action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" placeholder="Student Name" aria-label="query" name="query">
+            </div>
+            <div class="ms-2">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            </form>
         <h1 class='text-center'>Students {{student.name}}</h1>
         <table class='table table-bordered table-hover'>
             <thead>
@@ -41,15 +59,24 @@
                 {% for x in student %}
                     <tr>
                         <td>{{x.rollno}}</td>
-                        <td><a href={% url 'result' x.rollno %}>{{x.name}}</a></td>
+                        <td>
+                            <div class="d-flex justify-content-between">
+                                <a href={% url 'result' x.rollno %}>{{x.name}}</a>
+
+                                <div class="d-flex">
+                                    <a href="{% url 'edit' x.rollno %}" class="ms-auto me-4"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="{% url 'delete' x.rollno %}" class="ms-auto"><i class="bi bi-trash text-danger"></i></a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     
     
-    <p style="margin-top:40px;">
-        <button><a href="../add/">Add member</a></button>
+    <p>
+        <a href={% url 'add' %} class="btn btn-success">Add student</a>
     </p>
     </div>
 {% endblock %}
